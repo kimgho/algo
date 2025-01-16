@@ -7,7 +7,7 @@ using namespace std;
 int ar[51][51];
 int t, m, n, k, x, y, ans;
 int dx[4] = {0, 0, -1, 1};
-int dy[4] = {-1, 1, 0, 0};
+int dy[4] = {1, -1, 0, 0};
 
 void dfs(int x, int y)
 {
@@ -28,26 +28,26 @@ int main()
     cin >> t;
     while (t > 0)
     {
-        cin >> n >> m >> k;
+        cin >> m >> n >> k;
         for (int i = 0; i < k; i++)
         {
             cin >> x >> y;
             ar[x][y] = 1;
         }
-        for (int j = 0; j < m; j++)
+        for (int i = 0; i < m; i++)
         {
-            for (int k = 0; k < n; k++)
+            for (int j = 0; j < n; j++)
             {
-                if (ar[j][k] == 1)
+                if (ar[i][j] == 1)
                 {
-                    dfs(j, k);
+                    dfs(i, j);
                     ans++;
                 }
             }
         }
         cout << ans << "\n";
-        ans = 0;
         t--;
+        ans = 0;
         memset(ar, 0, sizeof(ar));
     }
     return 0;
