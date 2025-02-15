@@ -1,55 +1,52 @@
 #include <iostream>
 #include <stack>
-#include <vector>
-
 using namespace std;
 #define io ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 
-int n;
-string cmd;
-stack<int> st;
 int main()
 {
     io;
+    int n;
+    stack<int> st;
+    string cmd;
+
     cin >> n;
-    for (int i = 0; i < n; i++)
+    while (n--)
     {
         cin >> cmd;
-        if (cmd == "push")
+
+        switch (cmd[0])
         {
-            int a;
-            cin >> a;
-            st.push(a);
-        }
-        if (cmd == "pop")
-        {
-            if (!st.empty())
+        case 'p':
+            if (cmd[1] == 'u')
             {
-                cout << st.top() << "\n";
-                st.pop();
+                int x;
+                cin >> x;
+                st.push(x);
             }
             else
             {
-                cout << -1 << "\n";
+                if (st.empty())
+                    cout << "-1\n";
+                else
+                {
+                    cout << st.top() << '\n';
+                    st.pop();
+                }
             }
-        }
-        if (cmd == "size")
-        {
-            cout << st.size() << "\n";
-        }
-        if (cmd == "empty")
-        {
-            if (st.empty())
-                cout << 1 << "\n";
-            else
-                cout << 0 << "\n";
-        }
-        if (cmd == "top")
-        {
-            if (st.empty())
-                cout << -1 << "\n";
-            else
-                cout << st.top() << "\n";
+            break;
+
+        case 's':
+            cout << st.size() << '\n';
+            break;
+
+        case 'e':
+            cout << st.empty() << '\n';
+            break;
+
+        case 't':
+            cout << (st.empty() ? -1 : st.top()) << '\n';
+            break;
         }
     }
     return 0;
